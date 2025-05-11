@@ -1,8 +1,10 @@
+import fetch from 'node-fetch';
+
 export default async function handler(req, res) {
   const { code } = req.query;
+  console.log("Code reçu : ", code);  // Ajoute un log pour voir le code
 
   if (!code) {
-    // Étape 1 : redirige vers l'autorisation Spotify
     const scope = 'user-read-currently-playing user-read-playback-state';
     const params = new URLSearchParams({
       response_type: 'code',
@@ -14,7 +16,7 @@ export default async function handler(req, res) {
     return res.redirect(`https://accounts.spotify.com/authorize?${params.toString()}`);
   }
 
-  // Étape 2 : si `code` présent, échange contre des tokens
+  // Étape 2 : échange le code contre un token
   const basicAuth = Buffer.from(
     process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET
   ).toString('base64');
@@ -33,12 +35,13 @@ export default async function handler(req, res) {
   });
 
   const data = await tokenRes.json();
+  console.log("Réponse de Spotify : ", data);  // Ajoute un log pour la réponse
 
   if (data.error) {
     return res.status(500).json({ error: data.error_description });
   }
 
-  // 👉 Retourne les tokens
+  // ✅ Tu obtiens les tokens ici
   return res.status(200).json({
     access_token: data.access_token,
     refresh_token: data.refresh_token,
