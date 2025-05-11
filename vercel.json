@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/auth.js",
+      "src": "api/callback.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/",
-      "dest": "/api/auth.js"
+      "dest": "/api/callback.js"
     }
   ]
 }

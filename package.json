@@ -1,7 +1,7 @@
 {
   "name": "mon-projet",
   "version": "1.0.0",
-  "main": "api/auth.js",
+  "main": "api/callback.js",
   "scripts": {
     "start": "vercel dev"
   },
