@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/nowplaying.js",
+      "src": "api/auth.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/",
-      "dest": "/api/nowplaying.js"
+      "dest": "/api/auth.js"
     }
   ]
 }
