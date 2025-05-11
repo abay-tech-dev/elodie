@@ -4,7 +4,7 @@ export default function handler(req, res) {
     response_type: 'code',
     client_id: process.env.SPOTIFY_CLIENT_ID,
     scope,
-    redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
+    redirect_uri: process.env.SPOTIFY_REDIRECT_URL,
   });
 
   res.redirect('https://accounts.spotify.com/authorize?' + queryParams.toString());
