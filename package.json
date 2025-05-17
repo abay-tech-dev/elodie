@@ -1,7 +1,7 @@
 {
   "name": "mon-projet",
   "version": "1.0.0",
-  "main": "/pages/api/index.js",
+  "main": "/api/nowplayingregroup.js",
   "scripts": {
     "start": "vercel dev"
   },
