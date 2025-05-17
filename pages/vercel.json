@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "/pages/api/nowplayingregroup.js",
+      "src": "/pages/api/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/",
-      "dest": "/pages/api/nowplayingregroup.js"
+      "dest": "/pages/api/index.js"
     }
   ]
 }
