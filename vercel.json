@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/callback.js",
+      "src": "api/nowplayingregroup.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/",
-      "dest": "/api/callback.js"
+      "dest": "/api/nowplayingregroup.js"
     }
   ]
 }
