@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  // Cas 1 : callback OAuth avec code
+  // 1. Callback OAuth : Spotify renvoie ?code=...
   if (req.query.code) {
     const params = new URLSearchParams({
       grant_type: 'authorization_code',
@@ -15,15 +15,18 @@ export default async function handler(req, res) {
       body: params.toString()
     });
     const data = await response.json();
+
+    // Pour test : affiche les tokens
     return res.status(200).json(data);
   }
 
-  // Cas 2 : requête pour now-playing avec access_token
+  // 2. Afficher la musique en cours via ?access_token=...
   if (req.query.access_token) {
     const access_token = req.query.access_token;
     const response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
       headers: { Authorization: `Bearer ${access_token}` }
     });
+
     if (response.status === 204) {
       return res.status(200).json({ is_playing: false });
     }
@@ -39,7 +42,7 @@ export default async function handler(req, res) {
     });
   }
 
-  // Cas 3 : débuter l’auth Spotify (ton code d'origine)
+  // 3. Sinon, démarrer le login OAuth (redirection vers Spotify)
   const scope = 'user-read-currently-playing user-read-playback-state';
   const queryParams = new URLSearchParams({
     response_type: 'code',
